@@ -22,7 +22,7 @@ class Contents extends React.Component {
     if (this.props.story.storyDetail !== prevProps.story.storyDetail) {
       if (!this.props.story.storyDetailLoad) {
         let cssUrls = this.props.story.storyDetail.css
-        cssUrls.map(url => url.replace(/^http/, 'https')) // 替换成https
+        cssUrls = cssUrls.map(url => url.replace(/^http/, 'https')) // 替换成https
         loadcss(cssUrls)
       }
     }
