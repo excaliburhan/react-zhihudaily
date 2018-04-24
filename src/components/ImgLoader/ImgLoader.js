@@ -22,7 +22,7 @@ class ImgLoader extends React.Component {
         <div className={`${styles['imgLoader-img']}`} style={imgStyle}>
           <img src={image} />
         </div>
-        <h1 className={`${styles['imgLoader-title']} u-ellipsis`}>{title}</h1>
+        <h1 className={`${styles['imgLoader-title']} u-ellipsis-2`}>{title}</h1>
         <span className={`${styles['imgLoader-source']}`}>{source}</span>
       </div>
     )
