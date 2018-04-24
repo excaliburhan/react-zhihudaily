@@ -104,7 +104,7 @@ const prodConfig = merge(baseConfig, {
     new CopyWebpackPlugin([
       {
         from: utils.resolve('static'),
-        to: utils.resolve('static'),
+        to: utils.resolve('dist/static'),
         ignore: ['.*']
       }
     ]),
