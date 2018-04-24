@@ -1,10 +1,12 @@
 const utils = require('./utils')
 
+const publicPath = '/zhihudaily/' // 二级目录
+
 module.exports = {
   output: {
     path: utils.resolve('dist'),
     filename: '[name].js',
-    publicPath: '/'
+    publicPath
   },
   resolve: {
     alias: {
