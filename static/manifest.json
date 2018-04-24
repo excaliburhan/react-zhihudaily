@@ -2,7 +2,7 @@
   "name": "知乎日报小平版",
   "short_name": "知乎日报",
   "lang": "zh-CN",
-  "start_url": "/index.html",
+  "start_url": "/zhihudaily/",
   "display": "standalone",
   "theme_color": "#2591D0",
   "icons": [
