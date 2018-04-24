@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { storyList, beforeList, storyRefresh } from '@/redux/actions/story'
-import InfiniteScroll from 'react-infinite-scroller'
+import styles from './style.pcss'
 import { PullToRefresh, ActivityIndicator } from 'antd-mobile'
 import HeaderBar from '@/components/HeaderBar/HeaderBar'
 import Slides from '@/components/Slides/Slides'
@@ -17,7 +17,8 @@ class Home extends React.Component {
     this.state = {
       title: '今日热闻',
       bgColor: '#2591D0',
-      opacity: 0
+      opacity: 0,
+      height: document.documentElement.clientHeight
     }
     this.onScroll = throttle(this.handleScroll, 100).bind(this)
   }
@@ -31,15 +32,28 @@ class Home extends React.Component {
   // 动态改变headBar的内容
   handleScroll() {
     let opacity = 0
-    const rect = document.body.getBoundingClientRect()
+    const rect = this.refs.wrap.getBoundingClientRect()
     const top = Math.abs(rect.top)
+    const bottom = rect.bottom
+    // 无限滚动计算
+    if (bottom < this.state.height + 200) {
+      this.onLoadMore()
+    }
+    // 透明度计算
     if (top >= 200) {
       opacity = 1
     } else {
       opacity = Number((top / 200).toFixed(2))
     }
     // 标题计算
-    const refKeys = Object.keys(this.refs)
+    let refKeys = []
+    for (const key in this.refs) {
+      if (this.refs.hasOwnProperty(key)) {
+        if (key !== 'wrap') {
+          refKeys.push(key)
+        }
+      }
+    }
     let refArr = []
     let titleArr = []
     refKeys.forEach((key, idx) => {
@@ -71,27 +85,21 @@ class Home extends React.Component {
   // 下拉刷新
   onPullDown() {
     // TODO 目前使用hack方法禁止在大于0的时候调用接口
-    const scrollTop = document.documentElement.scrollTop
-    if (scrollTop > 0) return
+    // const scrollTop = document.documentElement.scrollTop
+    // if (scrollTop > 0) return
     this.props.storyRefresh()
   }
 
   componentDidMount() {
     this.props.storyList()
-    window.addEventListener('scroll', this.onScroll, false)
+    window.addEventListener('scroll', this.onScroll, true)
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll, false)
+    window.removeEventListener('scroll', this.onScroll, true)
   }
   render() {
     const { title, bgColor, opacity } = this.state
-    const {
-      storyList,
-      storyDate,
-      beforeList,
-      beforeListPending,
-      storyRefreshPending
-    } = this.props.story
+    const { storyList, beforeList, storyRefreshPending } = this.props.story
     const topStories = storyList.top_stories
     const stories = storyList.stories
     const topDate = storyList.date
@@ -108,31 +116,29 @@ class Home extends React.Component {
       )
     })
     return (
-      <div>
+      <div className={styles.home}>
         <HeaderBar title={title} bgColor={bgColor} opacity={opacity} />
         <PullToRefresh
+          id='pull'
+          style={{
+            height: this.state.height,
+            overflow: 'auto'
+          }}
           onRefresh={() => {
             this.onPullDown()
           }}
           distanceToRefresh={50}
           refreshing={storyRefreshPending}
         >
-          <Slides list={topStories} index={topStories.length - 1} />
-          <div ref='story0' data-date={formatDay(topDate)}>
-            <Story list={stories} />
+          <div className={styles.homeWrap} ref='wrap'>
+            <Slides list={topStories} index={topStories.length - 1} />
+            <div ref='story0' data-date={formatDay(topDate)}>
+              <Story list={stories} />
+            </div>
+            {beforeJSX}
+            {loadingJSX}
           </div>
         </PullToRefresh>
-        <InfiniteScroll
-          hasMore={storyDate && !beforeListPending}
-          initialLoad={false}
-          threshold={250}
-          loadMore={() => {
-            this.onLoadMore()
-          }}
-          loader={loadingJSX}
-        >
-          {beforeJSX}
-        </InfiniteScroll>
       </div>
     )
   }

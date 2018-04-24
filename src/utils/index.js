@@ -21,7 +21,7 @@ export function replaceStr(str = '', obj = {}) {
 }
 
 // 点击返回顶部
-export function backTop() {
+export function backTop(scrollDOM) {
   const requestAnimationFrame =
     window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -30,16 +30,17 @@ export function backTop() {
 
   let maxFrame = 10 // 总帧数
   let frame = 1 // 当前帧
+  scrollDOM = scrollDOM || document.documentElement
 
   function step() {
-    const scrollTop = document.documentElement.scrollTop
+    const scrollTop = scrollDOM.scrollTop
     if (scrollTop > 0) {
       if (frame < maxFrame) {
-        document.documentElement.scrollTop -= scrollTop / 2
+        scrollDOM.scrollTop -= scrollTop / 2
         requestAnimationFrame(step)
         frame++
       } else if (frame >= maxFrame) {
-        document.documentElement.scrollTop = 0
+        scrollDOM.scrollTop = 0
       }
     }
   }

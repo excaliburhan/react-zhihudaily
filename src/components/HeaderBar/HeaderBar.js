@@ -18,7 +18,9 @@ class HeaderBar extends React.Component {
       backgroundColor: hex2rgba(bgColor || '#2591D0', opacity || 0)
     }
     return (
-      <div className={styles.headerBar} onClick={backTop} style={headerStyle}>{this.props.title}</div>
+      <div className={styles.headerBar} onClick={() => {
+        backTop(document.getElementById('pull'))
+      }} style={headerStyle}>{this.props.title}</div>
     )
   }
 }
