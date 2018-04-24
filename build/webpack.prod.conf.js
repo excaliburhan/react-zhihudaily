@@ -17,6 +17,7 @@ const prodConfig = merge(baseConfig, {
     app: ['babel-polyfill', utils.resolve('src/index.js')]
   },
   output: {
+    publicPath: '/zhihudaily/', // 二级目录
     filename: 'static/js/[name].[chunkhash].js',
     chunkFilename: 'static/js/[id].[chunkhash].js'
   },
