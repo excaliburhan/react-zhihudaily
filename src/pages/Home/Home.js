@@ -102,7 +102,12 @@ class Home extends React.Component {
     const stories = storyList.stories
     const topDate = storyList.date
     const loadingJSX = (
-      <div key={0} style={{ padding: '20px 0' }}>
+      <div style={{ padding: '200px 0 20px' }}>
+        <ActivityIndicator text='Loading...' />
+      </div>
+    )
+    const moreJSX = (
+      <div style={{ padding: '20px 0' }}>
         <ActivityIndicator text='Loading...' />
       </div>
     )
@@ -113,8 +118,8 @@ class Home extends React.Component {
         </div>
       )
     })
-    return (
-      <div className={styles.home}>
+    const mainJSX = (
+      <div className={styles.homeBox}>
         <HeaderBar title={title} bgColor={bgColor} opacity={opacity} />
         <PullToRefresh
           id='pull'
@@ -134,11 +139,12 @@ class Home extends React.Component {
               <Story list={stories} />
             </div>
             {beforeJSX}
-            {loadingJSX}
+            {moreJSX}
           </div>
         </PullToRefresh>
       </div>
     )
+    return <div className={styles.home}>{topDate ? mainJSX : loadingJSX}</div>
   }
 }
 

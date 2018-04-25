@@ -46,7 +46,7 @@ class Contents extends React.Component {
     const source = this.props.story.storyDetail.image_source
     const { storyDetailPending } = this.props.story
     const loadingJSX = (
-      <div key={0} style={{ padding: '200px 0 20px' }}>
+      <div style={{ padding: '200px 0 20px' }}>
         <ActivityIndicator text='Loading...' />
       </div>
     )
