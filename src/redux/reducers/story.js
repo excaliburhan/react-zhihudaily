@@ -11,7 +11,7 @@ import {
   STORY_DETAIL,
   STORY_DETAIL_SUCCESS,
   STORY_DETAIL_ERROR,
-  STORY_DETAIL_LOAD
+  STORY_DETAIL_PENDING
 } from '@/redux/actions/story'
 
 const initState = {
@@ -30,7 +30,7 @@ const initState = {
   storyDetailParams: {},
   storyDetail: {},
   storyDetailError: null,
-  storyDetailLoad: false // css、js动态加载标志，加载过之后不需要重复加载
+  storyDetailPending: false
 }
 
 export default function reducer(state = initState, action) {
@@ -95,10 +95,10 @@ export default function reducer(state = initState, action) {
         ...state,
         storyDetailError: action.data
       }
-    case STORY_DETAIL_LOAD:
+    case STORY_DETAIL_PENDING:
       return {
         ...state,
-        storyDetailLoad: action.data
+        storyDetailPending: action.data
       }
     default:
       return state

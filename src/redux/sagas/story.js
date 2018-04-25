@@ -1,4 +1,5 @@
 import { select, call, put, fork } from 'redux-saga/effects'
+import storage from 'xp-storage'
 import request from '@/api/request'
 import urls from '@/api/urls'
 import { storyState } from '@/redux/sagas/selectors'
@@ -12,7 +13,7 @@ import {
   beforeListPending,
   storyDetailSuccess,
   storyDetailError,
-  storyDetailLoad
+  storyDetailPending
 } from '@/redux/actions/story'
 
 export function * storyListAsync() {
@@ -59,18 +60,25 @@ export function * beforeListAsync(params) {
     if (!date || !story.storyDate || story.beforeListPending) {
       return
     }
+    // 如果ls存在缓存，直接使用缓存
+    let beforeCache = storage.get('before') || {}
+    let data
     yield put(beforeListPending(true)) // 请求状态设置为true
-    const res = yield call(request, {
-      url: urls.storyBefore,
-      params: { date }
-    })
-    let data = res['STORIES']
-    if (data) {
-      yield put(storyDateSuccess(data.date)) // 先设置请求的日期
-      const beforeList = story.beforeList
-      data = beforeList.concat(data)
-      yield put(beforeListSuccess(data))
+    if (beforeCache[date]) {
+      data = beforeCache[date]
+    } else {
+      const res = yield call(request, {
+        url: urls.storyBefore,
+        params: { date }
+      })
+      data = res['STORIES']
+      // 设置缓存数据
+      beforeCache[date] = data
+      storage.set('before', beforeCache)
     }
+    yield put(storyDateSuccess(data.date)) // 先设置请求的日期
+    const newList = story.beforeList.concat([data])
+    yield put(beforeListSuccess(newList))
     yield put(beforeListPending(false))
   } catch (error) {
     yield put(beforeListError(error))
@@ -80,17 +88,28 @@ export function * beforeListAsync(params) {
 
 export function * storyDetailAsync(params) {
   try {
+    yield put(storyDetailSuccess({})) // 清空原有数据
     const id = params.data
-    const res = yield call(request, {
-      url: urls.storyDetail,
-      params: { id }
-    })
-    const data = res['CONTENTS']
-    if (data) {
-      yield put(storyDetailSuccess(data))
-      yield put(storyDetailLoad(true)) // 只要成功加载就设置为true
+    // 如果ls存在缓存，直接使用缓存
+    let detailCache = storage.get('detail') || {}
+    let data
+    yield put(storyDetailPending(true)) // 请求状态设置为true
+    if (detailCache[id]) {
+      data = detailCache[id]
+    } else {
+      const res = yield call(request, {
+        url: urls.storyDetail,
+        params: { id }
+      })
+      data = res['CONTENTS']
+      // 设置缓存数据
+      detailCache[id] = data
+      storage.set('detail', detailCache)
     }
+    yield put(storyDetailSuccess(data))
+    yield put(storyDetailPending(false))
   } catch (error) {
     yield put(storyDetailError(error))
+    yield put(storyDetailPending(false))
   }
 }

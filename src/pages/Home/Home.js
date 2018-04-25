@@ -20,7 +20,7 @@ class Home extends React.Component {
       opacity: 0,
       height: document.documentElement.clientHeight
     }
-    this.onScroll = throttle(this.handleScroll, 100).bind(this)
+    this.onScroll = throttle(this.onScroll, 100).bind(this)
   }
   static propTypes = {
     story: PropTypes.object,
@@ -30,7 +30,7 @@ class Home extends React.Component {
   }
 
   // 动态改变headBar的内容
-  handleScroll() {
+  onScroll() {
     let opacity = 0
     const rect = this.refs.wrap.getBoundingClientRect()
     const top = Math.abs(rect.top)
@@ -79,14 +79,12 @@ class Home extends React.Component {
   // 无限加载
   onLoadMore() {
     const { storyDate, beforeListPending } = this.props.story
+    console.log(storyDate, beforeListPending)
     if (!storyDate || beforeListPending) return
     this.props.beforeList(storyDate)
   }
   // 下拉刷新
   onPullDown() {
-    // TODO 目前使用hack方法禁止在大于0的时候调用接口
-    // const scrollTop = document.documentElement.scrollTop
-    // if (scrollTop > 0) return
     this.props.storyRefresh()
   }
 

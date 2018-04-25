@@ -11,7 +11,7 @@ export const STORY_REFRESH_PENDING = 'story/STORY_REFRESH_PENDING'
 export const STORY_DETAIL = 'story/STORY_DETAIL'
 export const STORY_DETAIL_SUCCESS = 'story/STORY_DETAIL_SUCCESS'
 export const STORY_DETAIL_ERROR = 'story/STORY_DETAIL_ERROR'
-export const STORY_DETAIL_LOAD = 'story/STORY_DETAIL_LOAD'
+export const STORY_DETAIL_PENDING = 'story/STORY_DETAIL_PENDING'
 
 // 获取最近story
 export function storyList(data) {
@@ -98,9 +98,9 @@ export function storyDetailError(data) {
     data
   }
 }
-export function storyDetailLoad(data) {
+export function storyDetailPending(data) {
   return {
-    type: STORY_DETAIL_LOAD,
+    type: STORY_DETAIL_PENDING,
     data
   }
 }

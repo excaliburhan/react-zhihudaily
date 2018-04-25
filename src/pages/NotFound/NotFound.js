@@ -1,19 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
-import { withRouter } from 'react-router-dom'
-import Hammer from 'react-hammerjs'
+import HammerBack from '@/components/HammerBack/HammerBack'
 
 class NotFound extends React.Component {
-  static propTypes = {
-    history: PropTypes.object // history
-  }
-
-  // 滑动返回
-  onSwipeBack() {
-    this.props.history.goBack()
-  }
-
   render() {
     const notFoundStyle = {
       minHeight: '100vh',
@@ -22,16 +11,11 @@ class NotFound extends React.Component {
       fontSize: '40px'
     }
     return (
-      <Hammer
-        onSwipe={() => {
-          this.onSwipeBack()
-        }}
-        direction='DIRECTION_RIGHT'
-      >
+      <HammerBack>
         <div style={notFoundStyle}>404</div>
-      </Hammer>
+      </HammerBack>
     )
   }
 }
 
-export default hot(module)(withRouter(NotFound))
+export default hot(module)(NotFound)
