@@ -1,0 +1,48 @@
+@svg 1px-border {
+  @rect {
+    fill: none;
+    stroke: var(--color, black);
+    width: 100%;
+    height: 100%;
+  }
+}
+@svg 1px-border-top {
+  @line {
+    fill: none;
+    stroke: var(--color, black);
+    x1: 0;
+    y1: 0;
+    x2: 100%;
+    y2: 0;
+  }
+}
+@svg 1px-border-right {
+  @line {
+    fill: none;
+    stroke: var(--color, black);
+    x1: 100%;
+    y1: 0;
+    x2: 100%;
+    y2: 100%;
+  }
+}
+@svg 1px-border-bottom {
+  @line {
+    fill: none;
+    stroke: var(--color, black);
+    x1: 0;
+    y1: 100%;
+    x2: 100%;
+    y2: 100%;
+  }
+}
+@svg 1px-border-left {
+  @line {
+    fill: none;
+    stroke: var(--color, black);
+    x1: 0;
+    y1: 0;
+    x2: 0;
+    y2: 100%;
+  }
+}

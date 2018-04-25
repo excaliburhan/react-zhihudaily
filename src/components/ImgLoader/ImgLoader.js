@@ -3,20 +3,18 @@ import PropTypes from 'prop-types'
 import styles from './style.css'
 
 class ImgLoader extends React.Component {
+  static defaultProps = {
+    imgStyle: { width: '100%', height: '200px' }
+  }
   static propTypes = {
-    width: PropTypes.string,
-    height: PropTypes.string,
+    imgStyle: PropTypes.object,
     title: PropTypes.string,
     source: PropTypes.string,
     image: PropTypes.string
   }
 
   render() {
-    const { width, height, image, title, source } = this.props
-    const imgStyle = {
-      width: width || '100%',
-      height: height || '200px'
-    }
+    const { imgStyle, image, title, source } = this.props
     return (
       <div className={styles.imgLoader} style={imgStyle}>
         <div className={`${styles['imgLoader-img']}`} style={imgStyle}>

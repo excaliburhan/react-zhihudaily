@@ -40,9 +40,15 @@
     This is your fallback content in case JavaScript fails to load.
   </noscript>
   <div id="app"></div>
+  <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+  <script>
+    window.onload = function () {
+      window.viewportUnitsBuggyfill.init({ hacks: window.viewportUnitsBuggyfillHacks });
+    }
+  </script>
   <!-- Todo: only include in production -->
   <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
-  <!-- built files will be auto injected -->
+    <!-- built files will be auto injected -->
 </body>
 
 </html>

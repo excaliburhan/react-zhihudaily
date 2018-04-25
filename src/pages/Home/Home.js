@@ -102,7 +102,13 @@ class Home extends React.Component {
     const stories = storyList.stories
     const topDate = storyList.date
     const loadingJSX = <LoadingBar />
-    const moreJSX = <LoadingBar style={{ padding: '20px 0' }} />
+    const moreJSX = (
+      <LoadingBar
+        style={{
+          padding: `${window.devicePixelRatio * 10}px 0`
+        }}
+      />
+    )
     const beforeJSX = beforeList.map((item, index) => {
       return (
         <div ref={`story${index + 1}`} key={index} data-date={formatDay(item.date)}>
@@ -122,7 +128,7 @@ class Home extends React.Component {
           onRefresh={() => {
             this.onPullDown()
           }}
-          distanceToRefresh={50}
+          distanceToRefresh={window.devicePixelRatio * 25}
           refreshing={storyRefreshPending}
         >
           <div className={styles.homeWrap} ref='wrap'>

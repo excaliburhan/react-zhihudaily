@@ -4,7 +4,9 @@ import { ActivityIndicator } from 'antd-mobile'
 
 class LoadingBar extends React.Component {
   static defaultProps = {
-    style: { padding: '200px 0 20px' },
+    style: {
+      padding: `30% 0 ${window.devicePixelRatio * 10}px`
+    },
     text: 'Loading...'
   }
   static propTypes = {

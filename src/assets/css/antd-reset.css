@@ -2,3 +2,18 @@
 :global(.am-activity-indicator) {
   justify-content: center !important;
 }
+:global(.am-activity-indicator-spinner) {
+  width: 40px;
+  height: 40px;
+}
+:global(.am-activity-indicator-tip) {
+  font-size: 28px;
+  margin-left: 16px; 
+}
+:global(.am-carousel-wrap-dot) {
+  & > span {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 6px !important;
+  }
+}

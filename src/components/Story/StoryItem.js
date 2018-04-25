@@ -11,9 +11,9 @@ class StoryItem extends React.Component {
     const { item } = this.props
     return (
       <a className={styles.storyItem} href={`#/story/${item.id}`}>
-        <p className={styles['storyItem-title']}>
+        <div className={styles['storyItem-title']}>
           <span className='u-ellipsis-3'>{item.title}</span>
-        </p>
+        </div>
         <img className={styles['storyItem-img']} src={item.images[0]} alt='' />
       </a>
     )
