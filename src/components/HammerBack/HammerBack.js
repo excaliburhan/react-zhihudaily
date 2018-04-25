@@ -23,11 +23,10 @@ class HammerBack extends React.Component {
     this.setState({ deltaX })
   }
   onPanEnd(e) {
-    // 滑动超过一半距离，返回
-    if (e.deltaX >= this.state.width / 2) {
+    // 滑动超过距离则返回
+    if (e.deltaX >= this.state.width / 3) {
       this.props.history.goBack()
     } else {
-      this.setState({ deltaX: e.deltaX })
       this.setState({ deltaX: 0 }) // 还原deltaX
     }
   }
