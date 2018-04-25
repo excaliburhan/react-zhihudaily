@@ -79,7 +79,6 @@ class Home extends React.Component {
   // 无限加载
   onLoadMore() {
     const { storyDate, beforeListPending } = this.props.story
-    console.log(storyDate, beforeListPending)
     if (!storyDate || beforeListPending) return
     this.props.beforeList(storyDate)
   }
@@ -102,12 +101,12 @@ class Home extends React.Component {
     const stories = storyList.stories
     const topDate = storyList.date
     const loadingJSX = (
-      <div style={{ padding: '200px 0 20px' }}>
+      <div key={0} style={{ padding: '200px 0 20px' }}>
         <ActivityIndicator text='Loading...' />
       </div>
     )
     const moreJSX = (
-      <div style={{ padding: '20px 0' }}>
+      <div key={1} style={{ padding: '20px 0' }}>
         <ActivityIndicator text='Loading...' />
       </div>
     )
