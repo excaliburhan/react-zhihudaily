@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './style.pcss'
+import styles from './style.css'
 
 class StoryItem extends React.Component {
   static propTypes = {

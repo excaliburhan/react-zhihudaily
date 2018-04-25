@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import hex2rgba from 'hex2rgba'
-import styles from './style.pcss'
+import styles from './style.css'
 import { backTop } from '@/utils'
 
 class HeaderBar extends React.Component {

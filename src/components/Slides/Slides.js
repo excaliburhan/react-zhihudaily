@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Carousel } from 'antd-mobile'
-import styles from './style.pcss'
+import styles from './style.css'
 
 class Slides extends React.Component {
   static propTypes = {
