@@ -4,7 +4,8 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { storyList, beforeList, storyRefresh } from '@/redux/actions/story'
 import styles from './style.css'
-import { PullToRefresh, ActivityIndicator } from 'antd-mobile'
+import { PullToRefresh } from 'antd-mobile'
+import LoadingBar from '@/components/Loading/LoadingBar'
 import HeaderBar from '@/components/HeaderBar/HeaderBar'
 import Slides from '@/components/Slides/Slides'
 import Story from '@/components/Story/Story'
@@ -100,16 +101,8 @@ class Home extends React.Component {
     const topStories = storyList.top_stories
     const stories = storyList.stories
     const topDate = storyList.date
-    const loadingJSX = (
-      <div key={0} style={{ padding: '200px 0 20px' }}>
-        <ActivityIndicator text='Loading...' />
-      </div>
-    )
-    const moreJSX = (
-      <div key={1} style={{ padding: '20px 0' }}>
-        <ActivityIndicator text='Loading...' />
-      </div>
-    )
+    const loadingJSX = <LoadingBar />
+    const moreJSX = <LoadingBar style={{ padding: '20px 0' }} />
     const beforeJSX = beforeList.map((item, index) => {
       return (
         <div ref={`story${index + 1}`} key={index} data-date={formatDay(item.date)}>

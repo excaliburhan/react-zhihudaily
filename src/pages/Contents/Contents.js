@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import styles from './style.css'
 import loadcss from 'xp-loadcss'
 import { storyDetail } from '@/redux/actions/story'
-import { ActivityIndicator } from 'antd-mobile'
+import LoadingBar from '@/components/Loading/LoadingBar'
 import ImgLoader from '@/components/ImgLoader/ImgLoader'
 import HammerBack from '@/components/HammerBack/HammerBack'
 
@@ -45,11 +45,7 @@ class Contents extends React.Component {
     const { body, title, image } = this.props.story.storyDetail
     const source = this.props.story.storyDetail.image_source
     const { storyDetailPending } = this.props.story
-    const loadingJSX = (
-      <div style={{ padding: '200px 0 20px' }}>
-        <ActivityIndicator text='Loading...' />
-      </div>
-    )
+    const loadingJSX = <LoadingBar />
     const contentJSX = (
       <div className={styles.contents}>
         <ImgLoader title={title} source={source} image={image} />
