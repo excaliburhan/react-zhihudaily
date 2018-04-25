@@ -6,6 +6,7 @@ import initReactFastclick from 'react-fastclick'
 import store from '@/redux/store'
 import RouterMap from '@/router'
 import 'xp-reset.css'
+import 'animate.css'
 import '@/assets/css/app.css'
 
 initReactFastclick() // 解决移动端click事件

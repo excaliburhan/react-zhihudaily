@@ -8,12 +8,15 @@ class HammerBack extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      deltaX: 0, // 位移距离
-      width: document.documentElement.clientWidth
+      deltaX: 0 // 位移距离
     }
+  }
+  static defaultProps = {
+    distance: 100
   }
   static propTypes = {
     children: PropTypes.node,
+    distance: PropTypes.number,
     history: PropTypes.object // history
   }
 
@@ -23,9 +26,10 @@ class HammerBack extends React.Component {
     this.setState({ deltaX })
   }
   onPanEnd(e) {
+    const { distance, history } = this.props
     // 滑动超过距离则返回
-    if (e.deltaX >= this.state.width / 3) {
-      this.props.history.goBack()
+    if (e.deltaX >= distance) {
+      history.goBack()
     } else {
       this.setState({ deltaX: 0 }) // 还原deltaX
     }

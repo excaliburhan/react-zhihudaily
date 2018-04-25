@@ -1,0 +1,21 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: #333;
+  color: #fff;
+  &-num {
+    padding-top: 30%;
+    font-size: 100px;
+    font-weight: bold;
+    letter-spacing: 12px;
+  }
+  &-back {
+    margin-top: 100px;
+    padding: 8px 12px;
+    font-size: 28px;
+    font-weight: bold;
+    border: 2px solid #fff;
+  }
+}
