@@ -4,16 +4,19 @@ import { ActivityIndicator } from 'antd-mobile'
 
 class LoadingBar extends React.Component {
   static defaultProps = {
-    style: { padding: '200px 0 20px' }
+    style: { padding: '200px 0 20px' },
+    text: 'Loading...'
   }
   static propTypes = {
-    style: PropTypes.object
+    style: PropTypes.object,
+    text: PropTypes.string
   }
 
   render() {
+    const { style, text } = this.props
     return (
-      <div style={this.props.style}>
-        <ActivityIndicator text='Loading...' />
+      <div style={style}>
+        <ActivityIndicator text={text} />
       </div>
     )
   }
