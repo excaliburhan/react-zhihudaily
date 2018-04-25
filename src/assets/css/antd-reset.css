@@ -8,12 +8,21 @@
 }
 :global(.am-activity-indicator-tip) {
   font-size: 28px;
-  margin-left: 16px; 
+  margin-left: 16px;
 }
 :global(.am-carousel-wrap-dot) {
   & > span {
     width: 16px !important;
     height: 16px !important;
     margin: 0 6px !important;
+  }
+}
+:global(.am-pull-to-refresh-down .am-pull-to-refresh-indicator) {
+  height: 32px !important;
+  margin-top: -32px !important;
+  font-size: 28px !important;
+  :global(.am-icon-loading) {
+    width: 32px;
+    height: 32px;
   }
 }
