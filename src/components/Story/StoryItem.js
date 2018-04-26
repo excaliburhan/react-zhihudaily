@@ -15,7 +15,7 @@ class StoryItem extends React.Component {
         <div className={styles['storyItem-title']}>
           <span className='u-ellipsis-3'>{item.title}</span>
         </div>
-        <LazyLoad className={styles['storyItem-lazy']} throttle={100}>
+        <LazyLoad className={styles['storyItem-lazy']} throttle={100} offset={600}>
           <img className={styles['storyItem-img']} src={item.images[0]} alt='' />
         </LazyLoad>
       </a>
