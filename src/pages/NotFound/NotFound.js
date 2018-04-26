@@ -11,7 +11,7 @@ class NotFound extends React.Component {
   }
 
   onBackHome() {
-    this.props.history.goBack()
+    this.props.history.push('/')
   }
 
   render() {
