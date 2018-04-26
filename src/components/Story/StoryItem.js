@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './style.css'
+import LazyLoad from 'react-lazy-load'
 
 class StoryItem extends React.Component {
   static propTypes = {
@@ -14,7 +15,9 @@ class StoryItem extends React.Component {
         <div className={styles['storyItem-title']}>
           <span className='u-ellipsis-3'>{item.title}</span>
         </div>
-        <img className={styles['storyItem-img']} src={item.images[0]} alt='' />
+        <LazyLoad className={styles['storyItem-lazy']} throttle={100}>
+          <img className={styles['storyItem-img']} src={item.images[0]} alt='' />
+        </LazyLoad>
       </a>
     )
   }

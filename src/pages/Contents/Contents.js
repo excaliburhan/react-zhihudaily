@@ -8,6 +8,7 @@ import { storyDetail } from '@/redux/actions/story'
 import LoadingBar from '@/components/Loading/LoadingBar'
 import ImgLoader from '@/components/ImgLoader/ImgLoader'
 import HammerBack from '@/components/HammerBack/HammerBack'
+import { replaceHttp } from '@/utils'
 
 class Contents extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Contents extends React.Component {
     const tags = Array.prototype.slice.apply(document.getElementsByTagName('link'))
     const links = tags.map(item => item.href)
     urls.forEach(url => {
-      url = url.replace(/^http/, 'https') // 替换成https
+      url = replaceHttp(url) // 替换成https
       if (!links.includes(url)) {
         loadcss(url)
       }

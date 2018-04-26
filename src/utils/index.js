@@ -60,7 +60,7 @@ export function formatDay(str) {
   return `${m}月${d}日 ${weekDay}`
 }
 
-// sleep函数
-export function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
+// 转化http为https
+export function replaceHttp(str) {
+  return str.replace(/^http/, 'https')
 }
