@@ -15,7 +15,6 @@ class Slides extends React.Component {
       return (
         <a className={styles.slides} key={item.id} href={`#/story/${item.id}`}>
           <img
-            referrerPolicy='never'
             className={styles.slidesImg}
             src={item.image}
             onLoad={() => {

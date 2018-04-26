@@ -16,7 +16,7 @@ class StoryItem extends React.Component {
           <span className='u-ellipsis-3'>{item.title}</span>
         </div>
         <LazyLoad className={styles['storyItem-lazy']} throttle={100} offset={600}>
-          <img referrerPolicy='never' className={styles['storyItem-img']} src={item.images[0]} alt='' />
+          <img className={styles['storyItem-img']} src={item.images[0]} alt='' />
         </LazyLoad>
       </a>
     )

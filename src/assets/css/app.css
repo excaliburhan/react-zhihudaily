@@ -11,3 +11,7 @@ body {
   background: #fff !important;
   font-size: 28px;
 }
+/* vw方案适配 */
+img {
+  content: normal !important;
+}
