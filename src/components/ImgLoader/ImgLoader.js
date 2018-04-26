@@ -18,7 +18,7 @@ class ImgLoader extends React.Component {
     return (
       <div className={styles.imgLoader} style={imgStyle}>
         <div className={`${styles['imgLoader-img']}`} style={imgStyle}>
-          <img src={image} />
+          <img referrerPolicy='never' src={image} />
         </div>
         <h1 className={`${styles['imgLoader-title']} u-ellipsis-2`}>{title}</h1>
         <span className={`${styles['imgLoader-source']}`}>{source}</span>
