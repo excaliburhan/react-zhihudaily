@@ -25,18 +25,20 @@ class HammerBack extends React.Component {
 
   // 滑动
   onPan(e) {
-    const deltaX = e.deltaX
+    const { deltaX } = e
     const { minDistance } = this.props
-    if (deltaX > minDistance) { // 超过最小距离才有动效
+    // x超过最小距离，y小于最小距离，才有效
+    if (deltaX > minDistance) {
       this.setState({ deltaX })
     }
   }
   onPanEnd(e) {
-    const deltaX = e.deltaX
+    const { deltaX } = e
     const { maxDistance, history } = this.props
-    // 滑动超过距离则返回
+    // x超过最大距离，y小于最小距离
     if (deltaX >= maxDistance) {
-      if (history.length <= 1) { // 首次进入
+      if (history.length <= 1) {
+        // 首次进入
         history.push('/')
       } else {
         history.goBack()
@@ -61,7 +63,9 @@ class HammerBack extends React.Component {
         }}
         direction='DIRECTION_RIGHT'
       >
-        <div className={styles.hammerChild} style={childStyle}>{children}</div>
+        <div className={styles.hammerChild} style={childStyle}>
+          {children}
+        </div>
       </Hammer>
     )
   }
