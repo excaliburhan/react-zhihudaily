@@ -1,7 +1,11 @@
 import React from 'react'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import createHistory from 'history/createHashHistory'
 import Loadable from 'react-loadable'
 import Loading from '@/components/Loading/Loading'
+
+const history = createHistory()
 
 const createComponent = path => Loadable({
   loader: () => import(`@/pages/${path}`), // 必须使用字符串变量
@@ -12,15 +16,16 @@ const createComponent = path => Loadable({
 class RouteMap extends React.Component {
   render() {
     return (
-      <Router>
+      <ConnectedRouter history={history}>
         <Switch>
           <Route path='/' exact component={createComponent('Home/Home')} />
           <Route path='/story/:id' component={createComponent('Contents/Contents')} />
           <Route component={createComponent('NotFound/NotFound')} />
         </Switch>
-      </Router>
+      </ConnectedRouter>
     )
   }
 }
 
+export const hashHistory = history
 export default RouteMap

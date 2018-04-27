@@ -20,7 +20,7 @@ class HammerBack extends React.Component {
     children: PropTypes.node,
     minDistance: PropTypes.number,
     maxDistance: PropTypes.number,
-    history: PropTypes.object // history
+    history: PropTypes.object
   }
 
   // 滑动
