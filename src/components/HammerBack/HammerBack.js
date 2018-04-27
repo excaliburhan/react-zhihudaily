@@ -13,8 +13,8 @@ class HammerBack extends React.Component {
     }
   }
   static defaultProps = {
-    minDistance: 20,
-    maxDistance: 150
+    minDistance: 30,
+    maxDistance: 100
   }
   static propTypes = {
     children: PropTypes.node,
