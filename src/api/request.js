@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { baseUrl } from '@/appConfig'
-import { replaceStr } from '@/utils'
+import { replaceRestful } from '@/utils'
 
 // 创建axios实例
 const service = axios.create({
@@ -13,7 +13,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // restful处理
-    config.url = replaceStr(config.url, config.params)
+    config.url = replaceRestful(config.url, config.params)
     config.params = {}
     return config
   },

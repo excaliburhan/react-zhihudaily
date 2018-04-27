@@ -7,7 +7,7 @@
  */
 
 // 替换请求url，转成restful格式
-export function replaceStr(str = '', obj = {}) {
+export function replaceRestful(str = '', obj = {}) {
   let ret = str
   const reg = /{\w+}/g
   const matches = str.match(reg) || []
@@ -18,6 +18,11 @@ export function replaceStr(str = '', obj = {}) {
     }
   })
   return ret
+}
+
+// 替换http为https
+export function replaceHttp(str) {
+  return str.replace(/^http/, 'https')
 }
 
 // 点击返回顶部
@@ -58,9 +63,4 @@ export function formatDay(str) {
   const dayIdx = new Date(full).getDay()
   const weekDay = dayArr[dayIdx]
   return `${m}月${d}日 ${weekDay}`
-}
-
-// 转化http为https
-export function replaceHttp(str) {
-  return str.replace(/^http/, 'https')
 }

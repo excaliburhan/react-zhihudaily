@@ -12,6 +12,11 @@ import Story from '@/components/Story/Story'
 import { throttle } from 'xp-utils'
 import { formatDay } from '@/utils'
 
+const mapState = state => ({ story: state.story })
+const mapDispatch = { storyList, beforeList, storyRefresh }
+
+@hot(module)
+@connect(mapState, mapDispatch)
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -146,6 +151,4 @@ class Home extends React.Component {
   }
 }
 
-export default hot(module)(
-  connect(state => ({ story: state.story }), { storyList, beforeList, storyRefresh })(Home)
-)
+export default Home

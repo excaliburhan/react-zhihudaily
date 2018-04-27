@@ -4,6 +4,7 @@
     "react-hot-loader/babel",
     ["import", { "libraryName": "antd-mobile", "style": "css" }],
     "syntax-dynamic-import",
+    "transform-decorators-legacy",
     "transform-runtime"
   ]
 }

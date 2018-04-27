@@ -2,14 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
-import styles from './style.css'
-import loadcss from 'xp-loadcss'
 import { storyDetail } from '@/redux/actions/story'
+import styles from './style.css'
 import LoadingBar from '@/components/Loading/LoadingBar'
 import ImgLoader from '@/components/ImgLoader/ImgLoader'
 import HammerBack from '@/components/HammerBack/HammerBack'
+import loadcss from 'xp-loadcss'
 import { replaceHttp } from '@/utils'
 
+const mapState = state => ({ story: state.story })
+const mapDispatch = { storyDetail }
+
+@hot(module)
+@connect(mapState, mapDispatch)
 class Contents extends React.Component {
   constructor(props) {
     super(props)
@@ -61,6 +66,4 @@ class Contents extends React.Component {
   }
 }
 
-export default hot(module)(
-  connect(state => ({ story: state.story }), { storyDetail })(Contents)
-)
+export default Contents

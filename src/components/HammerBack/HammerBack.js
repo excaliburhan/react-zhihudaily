@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import Hammer from 'react-hammerjs'
 import styles from './style.css'
 
+@withRouter
 class HammerBack extends React.Component {
   constructor(props) {
     super(props)
@@ -12,23 +13,29 @@ class HammerBack extends React.Component {
     }
   }
   static defaultProps = {
-    distance: 100
+    minDistance: 20,
+    maxDistance: 150
   }
   static propTypes = {
     children: PropTypes.node,
-    distance: PropTypes.number,
+    minDistance: PropTypes.number,
+    maxDistance: PropTypes.number,
     history: PropTypes.object // history
   }
 
   // 滑动
   onPan(e) {
     const deltaX = e.deltaX
-    this.setState({ deltaX })
+    const { minDistance } = this.props
+    if (deltaX > minDistance) { // 超过最小距离才有动效
+      this.setState({ deltaX })
+    }
   }
   onPanEnd(e) {
-    const { distance, history } = this.props
+    const deltaX = e.deltaX
+    const { maxDistance, history } = this.props
     // 滑动超过距离则返回
-    if (e.deltaX >= distance) {
+    if (deltaX >= maxDistance) {
       history.goBack()
     } else {
       this.setState({ deltaX: 0 }) // 还原deltaX
@@ -56,4 +63,4 @@ class HammerBack extends React.Component {
   }
 }
 
-export default withRouter(HammerBack)
+export default HammerBack

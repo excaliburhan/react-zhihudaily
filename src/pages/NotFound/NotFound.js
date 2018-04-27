@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
 import { withRouter } from 'react-router-dom'
-import HammerBack from '@/components/HammerBack/HammerBack'
 import styles from './style.css'
+import HammerBack from '@/components/HammerBack/HammerBack'
 
+@hot(module)
+@withRouter
 class NotFound extends React.Component {
   static propTypes = {
     history: PropTypes.object // history
@@ -26,4 +28,4 @@ class NotFound extends React.Component {
   }
 }
 
-export default hot(module)(withRouter(NotFound))
+export default NotFound
