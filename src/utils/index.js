@@ -64,3 +64,12 @@ export function formatDay(str) {
   const weekDay = dayArr[dayIdx]
   return `${m}月${d}日 ${weekDay}`
 }
+
+// ua判断是不是手机端，只检查ios和android
+export function isMobile() {
+  const ua = navigator.userAgent
+  const isMobile = !!ua.match(/AppleWebKit.*Mobile.*/)
+  const isIos = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+  const isAndroid = ua.indexOf('Android') > -1
+  return isMobile || isIos || isAndroid
+}
