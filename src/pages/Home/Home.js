@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { storyList, beforeList, storyRefresh } from '@/redux/actions/story'
 import styles from './style.css'
+import persistedRoute from '@/components/PersistedRoute/PersistedRoute'
 import { PullToRefresh } from 'antd-mobile'
 import LoadingBar from '@/components/Loading/LoadingBar'
 import HeaderBar from '@/components/HeaderBar/HeaderBar'
@@ -17,6 +18,7 @@ const mapDispatch = { storyList, beforeList, storyRefresh }
 
 @hot(module)
 @connect(mapState, mapDispatch)
+@persistedRoute // componentDidMount统一添加路由信息
 class Home extends React.Component {
   constructor(props) {
     super(props)

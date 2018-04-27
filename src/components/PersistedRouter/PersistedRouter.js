@@ -1,20 +1,20 @@
 import { ConnectedRouter, push } from 'react-router-redux'
+import { connect } from 'react-redux'
+import storage from 'xp-storage'
 
+const mapState = state => state.router
+
+@connect(mapState)
 class PersistedRouter extends ConnectedRouter {
   componentWillMount() {
-    const { store: propsStore, history, isSSR } = this.props
-    this.store = propsStore || this.context.store
+    const { history, dispatch } = this.props
+    const lastRoute = storage.get('lastRoute')
 
-    if (!isSSR) {
-      this.unsubscribeFromHistory = history.listen(this.handleLocationChange)
+    if (lastRoute && lastRoute !== history.location.pathname) {
+      dispatch(push(lastRoute))
+    } else {
+      dispatch(push(history.location.pathname))
     }
-
-    // this is the tweak which will prefer persisted route instead of that in url:
-    const location = this.store.getState().router.location || {}
-    if (location.pathname !== history.location.pathname) {
-      this.store.dispatch(push(location.pathname))
-    }
-    this.handleLocationChange(history.location)
   }
 }
 

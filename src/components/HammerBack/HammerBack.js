@@ -36,7 +36,7 @@ class HammerBack extends React.Component {
     const { maxDistance, history } = this.props
     // 滑动超过距离则返回
     if (deltaX >= maxDistance) {
-      history.goBack()
+      history.push('/')
     } else {
       this.setState({ deltaX: 0 }) // 还原deltaX
     }

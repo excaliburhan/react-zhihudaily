@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { storyDetail } from '@/redux/actions/story'
 import styles from './style.css'
+import persistedRoute from '@/components/PersistedRoute/PersistedRoute'
 import LoadingBar from '@/components/Loading/LoadingBar'
 import ImgLoader from '@/components/ImgLoader/ImgLoader'
 import HammerBack from '@/components/HammerBack/HammerBack'
@@ -15,6 +16,7 @@ const mapDispatch = { storyDetail }
 
 @hot(module)
 @connect(mapState, mapDispatch)
+@persistedRoute
 class Contents extends React.Component {
   constructor(props) {
     super(props)

@@ -1,6 +1,6 @@
 import React from 'react'
+import ConnectedRouter from '@/components/PersistedRouter/PersistedRouter'
 import { Route, Switch } from 'react-router-dom'
-import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createHashHistory'
 import Loadable from 'react-loadable'
 import Loading from '@/components/Loading/Loading'
