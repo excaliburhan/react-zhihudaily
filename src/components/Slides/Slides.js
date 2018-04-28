@@ -34,7 +34,7 @@ class Slides extends React.Component {
     }
     return (
       <Carousel
-        autoplayInterval
+        autoplay
         infinite
         selectedIndex={this.props.index}
         dotStyle={dotStyle}

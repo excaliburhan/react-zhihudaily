@@ -22,7 +22,7 @@ export function replaceRestful(str = '', obj = {}) {
 
 // 替换http为https
 export function replaceHttp(str) {
-  return str.replace(/^http/, 'https')
+  return str.replace(/^http:/, 'https:')
 }
 
 // 点击返回顶部

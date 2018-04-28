@@ -9,7 +9,10 @@ export default function persistedRoute(WrappedComponent) {
     }
 
     componentDidMount() {
+      // lastRoute
       const path = this.props.location.pathname || '/'
+      storage.set('lastRoute', path)
+      // scroll
       const scrolls = storage.get('scrolls') || {}
       const scrollDOM = document.querySelector('.xp-scroll') || document.documentElement
       if (scrollDOM) {
@@ -19,7 +22,6 @@ export default function persistedRoute(WrappedComponent) {
           scrollDOM.scrollTop = scrollTop
         }, 0)
       }
-      storage.set('lastRoute', path)
     }
     componentWillUnmount() {
       const path = this.props.location.pathname || '/'
