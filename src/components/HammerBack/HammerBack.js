@@ -15,7 +15,7 @@ class HammerBack extends React.Component {
   static defaultProps = {
     minDistance: 30,
     maxDistance: 100,
-    needScroll: true
+    needScroll: false
   }
   static propTypes = {
     children: PropTypes.node,
@@ -50,6 +50,9 @@ class HammerBack extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    console.log(document.documentElement.scrollTop)
+  }
   render() {
     const { children, needScroll } = this.props
     const childStyle = {
@@ -57,7 +60,7 @@ class HammerBack extends React.Component {
     }
     let computedCls = styles.hammerChild
     if (needScroll) {
-      computedCls = `${styles['hammerChild-scroll']} xp-scroll`
+      computedCls = `${styles['hammerChild-scroll']}`
     }
     return (
       <Hammer

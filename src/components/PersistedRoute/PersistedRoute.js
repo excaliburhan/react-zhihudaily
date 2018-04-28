@@ -27,6 +27,7 @@ export default function persistedRoute(WrappedComponent) {
       const scrollDOM = document.querySelector('.xp-scroll') || document.documentElement
       if (scrollDOM) {
         const scrollTop = scrollDOM.scrollTop || 0
+        console.log(scrollDOM, scrollTop)
         scrolls[path] = scrollTop
         storage.set('scrolls', scrolls)
       }
