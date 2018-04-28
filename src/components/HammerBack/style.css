@@ -1,3 +1,7 @@
 .hammerChild {
-  /* transition: all 0.1s ease; */
+  &-scroll {
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+  }
 }

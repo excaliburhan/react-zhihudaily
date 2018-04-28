@@ -127,7 +127,8 @@ class Home extends React.Component {
       <div className={styles.homeBox}>
         <HeaderBar title={title} bgColor={bgColor} opacity={opacity} />
         <PullToRefresh
-          id='pull'
+          id='wrap'
+          className='xp-scroll'
           style={{
             height: this.state.height,
             overflow: 'auto'

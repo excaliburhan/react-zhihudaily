@@ -55,7 +55,7 @@ class Contents extends React.Component {
     const { storyDetailPending } = this.props.story
     const loadingJSX = <LoadingBar />
     const contentJSX = (
-      <div className={styles.contents}>
+      <div className={`${styles.contents}`}>
         <ImgLoader title={title} source={source} image={image} />
         <div dangerouslySetInnerHTML={{ __html: body }} />
       </div>

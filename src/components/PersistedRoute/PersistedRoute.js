@@ -10,7 +10,26 @@ export default function persistedRoute(WrappedComponent) {
 
     componentDidMount() {
       const path = this.props.location.pathname || '/'
+      const scrolls = storage.get('scrolls') || {}
+      const scrollDOM = document.querySelector('.xp-scroll') || document.documentElement
+      if (scrollDOM) {
+        const scrollTop = scrolls[path] || 0
+        // FIXME hack方法，强制后执行，否则高度出错
+        setTimeout(() => {
+          scrollDOM.scrollTop = scrollTop
+        }, 0)
+      }
       storage.set('lastRoute', path)
+    }
+    componentWillUnmount() {
+      const path = this.props.location.pathname || '/'
+      const scrolls = storage.get('scrolls') || {}
+      const scrollDOM = document.querySelector('.xp-scroll') || document.documentElement
+      if (scrollDOM) {
+        const scrollTop = scrollDOM.scrollTop || 0
+        scrolls[path] = scrollTop
+        storage.set('scrolls', scrolls)
+      }
     }
     render() {
       // ... and renders the wrapped component with the fresh data!

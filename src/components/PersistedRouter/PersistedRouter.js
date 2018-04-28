@@ -9,7 +9,8 @@ const mapState = state => state.router
 class PersistedRouter extends ConnectedRouter {
   componentWillMount() {
     const { history, dispatch } = this.props
-    const lastRoute = storage.get('lastRoute')
+    const lastRoute = storage.get('lastRoute') // 获取上次的路由
+    storage.set('scrolls', {}) // 重置scrolls数据
 
     // 只在移动端做这个处理
     if (isMobile() && lastRoute && lastRoute !== history.location.pathname) {

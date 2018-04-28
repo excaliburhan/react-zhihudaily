@@ -14,12 +14,14 @@ class HammerBack extends React.Component {
   }
   static defaultProps = {
     minDistance: 30,
-    maxDistance: 100
+    maxDistance: 100,
+    needScroll: true
   }
   static propTypes = {
     children: PropTypes.node,
     minDistance: PropTypes.number,
     maxDistance: PropTypes.number,
+    needScroll: PropTypes.bool,
     history: PropTypes.object
   }
 
@@ -49,9 +51,13 @@ class HammerBack extends React.Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, needScroll } = this.props
     const childStyle = {
       transform: `translateX(${this.state.deltaX}px)`
+    }
+    let computedCls = styles.hammerChild
+    if (needScroll) {
+      computedCls = `${styles['hammerChild-scroll']} xp-scroll`
     }
     return (
       <Hammer
@@ -63,7 +69,7 @@ class HammerBack extends React.Component {
         }}
         direction='DIRECTION_RIGHT'
       >
-        <div className={styles.hammerChild} style={childStyle}>
+        <div className={computedCls} style={childStyle}>
           {children}
         </div>
       </Hammer>

@@ -19,7 +19,7 @@ class HeaderBar extends React.Component {
     }
     return (
       <div className={styles.headerBar} onClick={() => {
-        backTop(document.getElementById('pull'))
+        backTop(document.getElementById('wrap'))
       }} style={headerStyle}>{this.props.title}</div>
     )
   }
