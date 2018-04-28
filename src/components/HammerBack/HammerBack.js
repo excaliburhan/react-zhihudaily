@@ -50,9 +50,6 @@ class HammerBack extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    console.log(document.documentElement.scrollTop)
-  }
   render() {
     const { children, needScroll } = this.props
     const childStyle = {
